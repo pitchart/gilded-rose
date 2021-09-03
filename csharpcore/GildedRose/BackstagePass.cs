@@ -16,19 +16,18 @@ namespace GildedRoseKata
             {
                 Quality = 0;
             }
-            else if (SellIn <= 5)
+            else if (SellIn < 5)
             {
-                Quality += 3;
+                Quality = Math.Min(Quality + 3, 50);
             }
-            else if (SellIn <= 10)
+            else if (SellIn < 10)
             {
-                Quality += 2;
+                Quality = Math.Min(Quality + 2, 50);
             }
             else
             {
-                Quality = Math.Max(0, Quality - 1);
+                Quality = Math.Min(Quality + 1, 50);
             }
-
         }
     }
 }

@@ -6,14 +6,14 @@ namespace GildedRoseTests
     public class BackstagePassTests
     {
         [Fact]
-        public void At_the_end_of_each_day_our_system_lowers_both_values_for_every_item()
+        public void At_the_end_of_each_day_quality_increases_and_sellin_decreases()
         {
             var item = new BackstagePass(new Item {Name = "concert", Quality = 10, SellIn = 30});
 
             item.GetOld();
 
             Assert.Equal(29, item.SellIn);
-            Assert.Equal(9, item.Quality);
+            Assert.Equal(11, item.Quality);
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace GildedRoseTests
         [Fact]
         public void Quality_increases_by_2_when_there_are_10_days_or_less()
         {
-            var item = new BackstagePass(new Item {Name = "concert", Quality = 10, SellIn = 11});
+            var item = new BackstagePass(new Item {Name = "concert", Quality = 10, SellIn = 10});
             item.GetOld();
 
             Assert.Equal(12, item.Quality);
@@ -39,7 +39,7 @@ namespace GildedRoseTests
         [Fact]
         public void Quality_increases_by_3_when_there_are_5_days_or_less()
         {
-            var item = new BackstagePass(new Item {Name = "concert", Quality = 10, SellIn = 6});
+            var item = new BackstagePass(new Item {Name = "concert", Quality = 10, SellIn = 5});
             item.GetOld();
 
             Assert.Equal(13, item.Quality);
@@ -47,12 +47,12 @@ namespace GildedRoseTests
         }
 
         [Fact]
-        public void Quality_is_never_negative()
+        public void Quality_is_never_more_than_50()
         {
-            var item = new BackstagePass(new Item {Name = "concert", Quality = 0, SellIn = 20});
+            var item = new BackstagePass(new Item {Name = "concert", Quality = 50, SellIn = 8});
             item.GetOld();
 
-            Assert.Equal(0, item.Quality);
+            Assert.Equal(50, item.Quality);
         }
     }
 }

@@ -47,25 +47,6 @@ namespace GildedRoseKata
                 if (item.Quality < 50)
                 {
                     item.Quality += 1;
-
-                    if (item.Name == ItemNameBackstagePasses)
-                    {
-                        if (item.SellIn < 11)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality += 1;
-                            }
-                        }
-
-                        if (item.SellIn < 6)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality += 1;
-                            }
-                        }
-                    }
                 }
             }
 
@@ -81,16 +62,9 @@ namespace GildedRoseKata
 
             if (item.Name != ItemNameAgedBrie)
             {
-                if (item.Name != ItemNameBackstagePasses)
+                if (item.Quality > 0 && item.Name != ItemNameSulfuras)
                 {
-                    if (item.Quality > 0 && item.Name != ItemNameSulfuras)
-                    {
-                        item.Quality -= 1;
-                    }
-                }
-                else
-                {
-                    item.Quality = 0;
+                    item.Quality -= 1;
                 }
             }
             else
