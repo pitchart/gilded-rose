@@ -7,7 +7,7 @@ namespace GildedRoseKata
     {
         public IList<InventoryItem> Create(IList<Item> items)
         {
-            return items.Select(i => new InventoryItem(i)).ToList();
+            return items.Select(i => (i.Name == GildedRose.ItemNameBackstagePasses) ? new BackstagePass(i) : new InventoryItem(i)).ToList();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace GildedRoseKata
 {
     public class GildedRose
     {
-        private const string ItemNameBackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
+        public const string ItemNameBackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
         private const string ItemNameAgedBrie = "Aged Brie";
         private const string ItemNameSulfuras = "Sulfuras, Hand of Ragnaros";
 
@@ -17,9 +17,16 @@ namespace GildedRoseKata
 
         public void UpdateQuality()
         {
-            foreach (var t in Items)
+            foreach (var inventoryItem in Items)
             {
-                ProcessItem(t);
+                if (inventoryItem is BackstagePass)
+                {
+                    (inventoryItem as BackstagePass).GetOld();
+                }
+                else
+                {
+                    ProcessItem(inventoryItem);
+                }
             }
         }
 
