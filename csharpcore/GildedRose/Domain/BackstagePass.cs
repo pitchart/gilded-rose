@@ -1,14 +1,14 @@
 using System;
 
-namespace GildedRoseKata
+namespace GildedRoseKata.Domain
 {
     public class BackstagePass : InventoryItem
     {
-        public BackstagePass(Item item): base(item)
+        public BackstagePass(string name, int quality, int sellIn) : base(name, quality, sellIn)
         {
         }
 
-        public void GetOld()
+        public override void GetOld()
         {
             SellIn--;
 

@@ -1,4 +1,4 @@
-using GildedRoseKata;
+using GildedRoseKata.Domain;
 using Xunit;
 
 namespace GildedRoseTests
@@ -8,7 +8,7 @@ namespace GildedRoseTests
         [Fact]
         public void At_the_end_of_each_day_quality_increases_and_sellin_decreases()
         {
-            var item = new BackstagePass(new Item {Name = "concert", Quality = 10, SellIn = 30});
+            var item = new BackstagePass("concert", 10, 30);
 
             item.GetOld();
 
@@ -19,7 +19,7 @@ namespace GildedRoseTests
         [Fact]
         public void Quality_drops_to_zero_after_the_concert()
         {
-            var item = new BackstagePass(new Item {Name = "concert", Quality = 10, SellIn = 0});
+            var item = new BackstagePass("concert", 10, 0);
 
             item.GetOld();
 
@@ -29,7 +29,7 @@ namespace GildedRoseTests
         [Fact]
         public void Quality_increases_by_2_when_there_are_10_days_or_less()
         {
-            var item = new BackstagePass(new Item {Name = "concert", Quality = 10, SellIn = 10});
+            var item = new BackstagePass("concert", 10, 10);
             item.GetOld();
 
             Assert.Equal(12, item.Quality);
@@ -39,7 +39,7 @@ namespace GildedRoseTests
         [Fact]
         public void Quality_increases_by_3_when_there_are_5_days_or_less()
         {
-            var item = new BackstagePass(new Item {Name = "concert", Quality = 10, SellIn = 5});
+            var item = new BackstagePass("concert", 10, 5);
             item.GetOld();
 
             Assert.Equal(13, item.Quality);
@@ -49,7 +49,7 @@ namespace GildedRoseTests
         [Fact]
         public void Quality_is_never_more_than_50()
         {
-            var item = new BackstagePass(new Item {Name = "concert", Quality = 50, SellIn = 8});
+            var item = new BackstagePass("concert", 50, 8);
             item.GetOld();
 
             Assert.Equal(50, item.Quality);

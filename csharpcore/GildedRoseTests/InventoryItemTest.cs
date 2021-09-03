@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GildedRoseKata;
+using GildedRoseKata.Domain;
 using Xunit;
 
 namespace GildedRoseTests
@@ -19,19 +20,23 @@ namespace GildedRoseTests
         }
 
         [Fact]
-        public void SellByDate_IsPassed_WhenSellInIsNegative()
+        public void At_the_end_of_each_day_quality_and_sellin_decreases()
         {
-            var inventoryItem = new InventoryItem(new Item { Name = "sell in negative", SellIn = -1, Quality = 2 });
+            var item = new InventoryItem("elixir", 10, 30);
 
-            Assert.True(inventoryItem.HasSellByDatePast);
+            item.GetOld();
+
+            Assert.Equal(29, item.SellIn);
+            Assert.Equal(9, item.Quality);
         }
 
         [Fact]
-        public void SellByDate_IsNotPassed_WhenSellInIsPositive()
+        public void Quality_is_never_negative()
         {
-            var inventoryItem = new InventoryItem(new Item { Name = "sell in negative", SellIn = 1, Quality = 2 });
+            var item = new InventoryItem("elixir", 0, 8);
+            item.GetOld();
 
-            Assert.False(inventoryItem.HasSellByDatePast);
+            Assert.Equal(0, item.Quality);
         }
     }
 }
