@@ -8,6 +8,8 @@
 
         public int SellIn { get; set; }
 
+        public bool HasSellByDatePast => SellIn < 0;
+
         public InventoryItem(Item item)
         {
             Name = item.Name;

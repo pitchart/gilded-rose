@@ -5,7 +5,7 @@ namespace GildedRoseKata
 {
     public class InventoryItemFactory
     {
-        public List<InventoryItem> Create(List<Item> items)
+        public IList<InventoryItem> Create(IList<Item> items)
         {
             return items.Select(i => new InventoryItem(i)).ToList();
         }

@@ -37,16 +37,17 @@ namespace GildedRoseKata
 				new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
             };
 
-            var app = new GildedRose(Items);
+            IList<InventoryItem> inventoryItems = new InventoryItemFactory().Create(Items);
+            var app = new GildedRose(inventoryItems);
 
 
             for (var i = 0; i < 31; i++)
             {
                 Console.WriteLine("-------- day " + i + " --------");
                 Console.WriteLine("name, sellIn, quality");
-                for (var j = 0; j < Items.Count; j++)
+                foreach (var t in inventoryItems)
                 {
-                    System.Console.WriteLine(Items[j].Name + ", " + Items[j].SellIn + ", " + Items[j].Quality);
+                    System.Console.WriteLine(t.Name + ", " + t.SellIn + ", " + t.Quality);
                 }
                 Console.WriteLine("");
                 app.UpdateQuality();

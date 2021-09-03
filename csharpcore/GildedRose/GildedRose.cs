@@ -8,9 +8,9 @@ namespace GildedRoseKata
         private const string ItemNameAgedBrie = "Aged Brie";
         private const string ItemNameSulfuras = "Sulfuras, Hand of Ragnaros";
 
-        IList<Item> Items;
+        IList<InventoryItem> Items;
 
-        public GildedRose(IList<Item> items)
+        public GildedRose(IList<InventoryItem> items)
         {
             this.Items = items;
         }
@@ -23,7 +23,7 @@ namespace GildedRoseKata
             }
         }
 
-        private void ProcessItem(Item item)
+        private void ProcessItem(InventoryItem item)
         {
             if (item.Name != ItemNameAgedBrie && item.Name != ItemNameBackstagePasses)
             {
@@ -67,7 +67,11 @@ namespace GildedRoseKata
                 item.SellIn -= 1;
             }
 
-            if (item.SellIn >= 0) return;
+            if (!item.HasSellByDatePast)
+            {
+                return;
+            }
+
             if (item.Name != ItemNameAgedBrie)
             {
                 if (item.Name != ItemNameBackstagePasses)
